@@ -14,7 +14,7 @@ RUN apk del rust cargo pkgconfig openssl-dev
 RUN apk add gcc
 
 # run debug
-#CMD ["RUST_BACKTRACE=full /rqbit/release/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl"]
+#CMD RUST_BACKTRACE=full /rqbit/release/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl
 
 # run
-CMD ["/rqbit/release/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl"]
+CMD /rqbit/release/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl
