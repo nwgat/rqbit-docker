@@ -7,14 +7,20 @@ RUN apk add rust cargo pkgconfig openssl-dev git
 RUN git clone https://github.com/ikatson/rqbit
 RUN cd /rqbit/ && cargo build -r --target-dir=/rqbit/
 
+# install
+install /rqbit/release/rqbit /usr/bin/
+
+# remove source files
+rm -rf /rqbit/
+
 # Remove packages
-RUN apk del rust cargo pkgconfig openssl-dev
+RUN apk del rust cargo pkgconfig openssl-dev git
 
 # Install GCC back
 RUN apk add gcc
 
 # run debug
-#CMD RUST_BACKTRACE=full /rqbit/release/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl
+#CMD RUST_BACKTRACE=full /usr/bin/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl
 
 # run
-CMD /rqbit/release/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl
+CMD /usr/bin/rqbit --http-api-listen-addr 0.0.0.0:3030 server start dl
