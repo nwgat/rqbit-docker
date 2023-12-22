@@ -8,10 +8,10 @@ RUN git clone https://github.com/ikatson/rqbit
 RUN cd /rqbit/ && cargo build -r --target-dir=/rqbit/
 
 # install
-install /rqbit/release/rqbit /usr/bin/
+RUN install /rqbit/release/rqbit /usr/bin/
 
 # remove source files
-rm -rf /rqbit/
+RUN rm -rf /rqbit/
 
 # Remove packages
 RUN apk del rust cargo pkgconfig openssl-dev git
